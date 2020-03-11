@@ -45,12 +45,15 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/post/{id}','postsController@edit')->name('post-edit');
         Route::post('/post-update','postsController@update')->name('post-update');
         Route::post('/post-store','postsController@store')->name('post-store');
+        Route::post('/post-delete','postsController@delete')->name('post-delete');
         // categories routes
         Route::get('/categories','categoriesController@index')->name('categories');
+        Route::get('/category/add','categoriesController@add')->name('add-category');
         Route::get('/category/show/{id}','categoriesController@edit')->name('category-show');
         Route::get('/category/{id}','categoriesController@edit')->name('category-edit');
         Route::post('/category-update','categoriesController@update')->name('category-update');
         Route::post('/category-store','categoriesController@store')->name('category-store');
+        Route::post('/category-delete','categoriesController@delete')->name('category-delete');
         // comments routes
         Route::get('/comments','commentsController@index')->name('comments');
         Route::get('/comment/{id}','commentsController@show')->name('comment-show');

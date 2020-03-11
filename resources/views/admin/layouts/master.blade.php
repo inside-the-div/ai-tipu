@@ -23,6 +23,8 @@
   <!-- Your custom styles -->
   <link href="{{URL::asset('css/default.css')}}" rel="stylesheet">
   <link href="{{URL::asset('css/custom.css')}}"  rel="stylesheet">
+
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
  @yield('custom-css')
  @yield('title')
 	
@@ -68,6 +70,26 @@
           </div>
         </div>
       </li>
+
+      <li class="nav-item dropdown" type="button" data-toggle="collapse" data-target="#category-dropdown" aria-expanded="false" aria-controls="category-dropdown">
+        <span class="nav-link" >
+          <i class="fa fa-edit fa-fw" aria-hidden="true"></i>
+          <span class="nav-link-text font-josefin">Category</span>
+        </span>
+        <div class="collapse " id="category-dropdown">
+          <div class="card card-body bg-dark">
+              <a class="nav-link" href="{{route('categories')}}">
+               <i class="fa fa-list-ul fa-fw" aria-hidden="true"></i>
+                <span class="nav-link-text font-josefin">All Category</span>
+              </a>
+              <a class="nav-link" href="{{route('add-category')}}">
+                <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
+                <span class="nav-link-text font-josefin">Add Category</span>
+              </a>
+          </div>
+        </div>
+      </li>
+
 
       <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Dashboard">
         <a class="nav-link" href="{{route('comments')}}">
@@ -243,13 +265,30 @@
         <div class="col-12">
           <div class="page-title-area">
             @yield('page-top')
+            
+            @if ($errors->any())
+                
+              @foreach ($errors->all() as $error)
+                  <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
+                    {{$error}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+              @endforeach
+                
+            @endif
 
-            <div class="alert alert-info alert-dismissible fade show rounded-0" role="alert">
-              <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
+            @if(session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
+                  {{ session()->get('success') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+            @endif
+
+           
 
           </div>
         </div>

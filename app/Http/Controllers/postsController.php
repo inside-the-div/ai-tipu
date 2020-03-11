@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\post;
 use App\category;
@@ -35,28 +35,62 @@ class postsController extends Controller
         return view('admin.error.error-404');
     }
     public function store(Request $r){
+        
+        $post = new post;
+
+        if ($r->hasFile('image')) {
+            $r->validate([
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $image = $r->image->store('public/images');
+            $post->image = $image;
+        }
     	$r->validate([
             'title'         => 'required',
+            'writer'         => 'required',
+            'type'         => 'required',
             'body'          => 'required',
             'category'      => 'required',
-            'writer'        => 'required',
             'tag'           => 'required',
             'description'   => 'required',
             'user_id'       => 'required'
         ]);
-        $post = new post;
-        $post->title = $r->titel;
-        $post->body = $r->body;
+
+     
+        // store image 
+        
+        $slug = Str::slug($r->title, '-');
+        
+        $post->title = $r->title;
+        $post->slug = $slug;
         $post->writer = $r->writer;
+        $post->body = $r->body;
         $post->tag = $r->tag;
         $post->description = $r->description;
         $post->user_id = $r->user_id;
-        // add image 
-        //add catgory in cat and post table
+        $post->type = $r->type;
 
-        return redirect()->route('all-posts')->with('success',compact('post added success!')); 
+        if($r->video == ''){
+            $post->video = "none";
+        }else{
+            $post->video = $r->video;
+        }
+        if($post->save()){
+            return redirect()->route('posts')->with('success','post added success!'); 
+        }else{
+            return back()->withErrors(['post', 'Post not added']);
+        }
+        
 
     }
+
+
+    public function delete(Request $r){
+        post::find($r->id)->delete();
+        return response()->json(['success'=>'post delete success']);
+    }
+
+
     public function update(){
     	return "update";
     }
