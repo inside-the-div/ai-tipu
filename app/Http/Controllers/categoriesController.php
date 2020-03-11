@@ -16,12 +16,12 @@ class categoriesController extends Controller
     	return view('admin.category.show');
     }
     public function edit(){
-    	return "this is edit";
+    	return view('admin.category.edit');
     }
     public function store(){
-    	return "store ";
+    	return back()->with('success','category added success!');
     }
     public function update(){
-    	return "update";
+    	return back()->with('success','category updated success!');
     }
 }
