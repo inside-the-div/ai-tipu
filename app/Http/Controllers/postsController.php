@@ -25,21 +25,27 @@ class postsController extends Controller
             }
         }
         return view('admin.error.error-404');
-        
     }
     public function edit($id){
 	   if($id){
             $post = post::find($id);
+            $categories = category::all();
+            $this_category = $post->category;
+            $cat_array =  [];
+            foreach ($this_category as  $c) {
+                array_push($cat_array, $c->name);
+            }
+            
+
+
             if($post){
-                return view('admin.post.edit',compact('post'));
+                return view('admin.post.edit',compact('post','categories','cat_array'));
             }
         }
         return view('admin.error.error-404');
     }
     public function store(Request $r){
-        
         $post = new post;
-
         if ($r->hasFile('image')) {
             $r->validate([
                 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -58,9 +64,6 @@ class postsController extends Controller
             'user_id'       => 'required'
         ]);
 
-     
-        // store image 
-        
         $slug = Str::slug($r->title, '-');
         
         $post->title = $r->title;
@@ -92,7 +95,7 @@ class postsController extends Controller
 
 
     public function update(Request $r){
-    	$post = post::find($id);
+    	$post = post::find($r->id);
         if ($r->hasFile('image')) {
             $r->validate([
                 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -101,7 +104,7 @@ class postsController extends Controller
             $post->image = $image;
         }
         $r->validate([
-            'title'         => 'required|unique:posts,title'.$r->id,
+            'title'         => 'required|unique:posts,title,'.$r->id,
             'writer'        => 'required',
             'type'          => 'required',
             'body'          => 'required',
@@ -130,6 +133,6 @@ class postsController extends Controller
         DB::table('category_post')->where('post_id',$r->id)->delete();
         $post->save();
         $post->category()->sync($r->category);
-        return redirect()->route('posts')->with('success','post added success!'); 
+        return back()->with('success','post added success!'); 
     }
 }
