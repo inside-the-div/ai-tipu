@@ -23,8 +23,8 @@
                 <th scope="col">No</th>
                 <th scope="col">Name</th>
                 <th scope="col">Date</th>
-                <th scope="col">Post By</th>
-                <th scope="col">Publish</th>
+                <th scope="col">Added By</th>
+                <th scope="col">View</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
               </tr>
@@ -34,11 +34,11 @@
               @foreach($categories as $index => $category)
                 <tr>
                   <th scope="row">{{++$index}}</th>
-                  <td><a href="" class="text-light">{{$category->name}}</a></td>
+                  <td>{{$category->name}}</td>
                   <td>{{$category->created_at->format('d/m/Y')}}</td>
                   <td><a href="" class="text-light">{{$category->user->name}}</a></td>
-                  <td><a href="" class="btn btn-success rounded-0">Publish</a></td>
-                  <td><a href="" class="btn btn-info rounded-0">Edit</a></td>
+                  <td><a href="{{route('category-show',['id' => $category->id])}}" class="btn btn-success rounded-0">Details</a></td>
+                  <td><a href="{{route('category-edit',['id'=>$category->id])}}" class="btn btn-info rounded-0">Edit</a></td>
                   <td><button class="btn btn-danger rounded-0 category-delete-btn" data-id="{{$category->id}}">Delete</button></td>
                 </tr>
               @endforeach

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\category;
 class categoriesController extends Controller
@@ -13,11 +13,14 @@ class categoriesController extends Controller
     public function add(){
         return view('admin.category.add');
     }
-    public function show(){
-    	return view('admin.category.show');
+    public function show($id){
+        $category = category::find($id);
+        $posts = $category->posts()->paginate(10);
+    	return view('admin.category.show',compact('category','posts'));
     }
-    public function edit(){
-    	return view('admin.category.edit');
+    public function edit($id){
+        $category = category::find($id);
+    	return view('admin.category.edit',compact('category'));
     }
     public function store(Request $r){
 
@@ -37,12 +40,26 @@ class categoriesController extends Controller
         $category->save();
     	return redirect()->route('categories')->with('success','category added success!');
     }
-    public function update(){
+    public function update(Request $r){
+        $r->validate([
+            'name' => 'required|unique:categories,name,'.$r->id,
+            'description' => 'required',
+            'tag' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        $category = category::find($r->id);
+        $category->name = $r->name;
+        $category->description = $r->description;
+        $category->tag = $r->tag;
+        $category->save();
+
     	return back()->with('success','category updated success!');
     }
 
     public function delete(Request $r){
         category::find($r->id)->delete();
+        DB::table('category_post')->where('category_id',$r->id)->delete();
         return response()->json(['success'=>'category delete success']);
     }
 }

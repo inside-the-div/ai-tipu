@@ -29,12 +29,10 @@
 
         <label for="category" class="mt-3"><b>Category*</b></label>
         <select name="category[]" id="category" class="form-control rounded-0" multiple>
-          
-          <option class="font-josefin font-16 py-2" value="">Category 1</option>
-          <option class="font-josefin font-16 py-2" value="">Category 1</option>
-          <option class="font-josefin font-16 py-2" value="">Category 1</option>
-          <option class="font-josefin font-16 py-2" value="">Category 1</option>
-          <option class="font-josefin font-16 py-2" value="">Category 1</option>
+          @foreach($categories as $category)
+          <option class="font-josefin font-16 py-2" value="{{$category->id}}">{{$category->name}}</option>
+
+          @endforeach
         </select>
       </div>
     </div>

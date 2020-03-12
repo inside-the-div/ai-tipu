@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\post;
@@ -75,18 +76,16 @@ class postsController extends Controller
         }else{
             $post->video = $r->video;
         }
-        if($post->save()){
-            return redirect()->route('posts')->with('success','post added success!'); 
-        }else{
-            return back()->withErrors(['post', 'Post not added']);
-        }
+        $post->save();
+        $post->category()->sync($r->category);
         
-
+        return redirect()->route('posts')->with('success','post added success!'); 
     }
 
 
     public function delete(Request $r){
         post::find($r->id)->delete();
+        DB::table('category_post')->where('post_id',$r->id)->delete();
         return response()->json(['success'=>'post delete success']);
     }
 
