@@ -110,7 +110,7 @@
                   <i class="fa fa-list-ul fa-fw" aria-hidden="true"></i>
                   <span class="nav-link-text font-josefin">All User</span>
                 </a>
-                <a class="nav-link" href="{{route('user-store')}}">
+                <a class="nav-link" href="{{route('user-add')}}">
                   <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
                   <span class="nav-link-text font-josefin">Add Users</span>
                 </a>

@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/passowrd-change','profilesController@passowrd_change')->name('passowrd-change');
         // users routes 
         Route::get('/users','usersController@index')->name('users');
+        Route::get('/user/add','usersController@add')->name('user-add');
         Route::get('/user/{id}','usersController@edit')->name('user-edit');
         Route::get('/user/show/{id}','usersController@show')->name('user-show');
         Route::post('/user-update','usersController@update')->name('user-update');

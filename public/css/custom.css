@@ -134,3 +134,67 @@ p,h1,h2,h3,h4,h5,h6,ul,a{
   color: #fff;
 
 }
+
+
+/*permission*/
+
+
+.toggleCheck { position:relative; }
+.toggleCheck *,
+.toggleCheck *:before,
+.toggleCheck *:after { box-sizing:border-box; }
+
+.toggleCheck input[type="checkbox"] { display:none; }
+.toggleCheck input[type="checkbox"][disabled] ~ label { pointer-events:none; }
+.toggleCheck input[type="checkbox"][disabled] ~ label .toggleCheck_switch { opacity:0.4; }
+.toggleCheck input[type="checkbox"]:checked ~ label .toggleCheck_switch:before { content:attr(data-unchecked); left:0; }
+.toggleCheck input[type="checkbox"]:checked ~ label .toggleCheck_switch:after { content:attr(data-checked); }
+.toggleCheck label { -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; position:relative; display:-webkit-box; display:flex; -webkit-box-align:center; align-items:center; }
+
+.toggleCheck label .toggleCheck_switch { position:relative; }
+.toggleCheck label .toggleCheck_switch:before { content:attr(data-checked); position:absolute; top:0; text-transform:uppercase; text-align:center; }
+.toggleCheck label .toggleCheck_switch:after { content:attr(data-unchecked); position:absolute; text-transform:uppercase; text-align:center; background:#fff; z-index:5; -webkit-transform:translate3d(0, 0, 0); transform:translate3d(0, 0, 0); }
+
+
+.toggleCheck label .toggleCheck_switch { -webkit-transition:background 0.3s cubic-bezier(0, 1, 0.5, 1); transition:background 0.3s cubic-bezier(0, 1, 0.5, 1); background:#848484; }
+.toggleCheck label .toggleCheck_switch:before { color:rgba(255, 255, 255, 0.5); }
+.toggleCheck label .toggleCheck_switch:after { -webkit-transition:-webkit-transform 0.3s cubic-bezier(0, 1, 0.5, 1); transition:-webkit-transform 0.3s cubic-bezier(0, 1, 0.5, 1); transition:transform 0.3s cubic-bezier(0, 1, 0.5, 1); -webkit-transform 0.3s cubic-bezier(0, 1, 0.5, 1); color:#777; }
+
+.toggleCheck input[type="checkbox"]:focus ~ label .toggleCheck_switch:after,
+.toggleCheck input[type="checkbox"]:hover ~ label .toggleCheck_switch:after { box-shadow:0 3px 3px rgba(0, 0, 0, 0.4); }
+.toggleCheck input[type="checkbox"]:checked ~ label .toggleCheck_switch:after { -webkit-transform:translate3d(65px, 0, 0); transform:translate3d(65px, 0, 0); }
+.toggleCheck input[type="checkbox"]:checked:focus ~ label .toggleCheck_switch:after,
+.toggleCheck input[type="checkbox"]:checked:hover ~ label .toggleCheck_switch:after { box-shadow:0 3px 3px rgba(0, 0, 0, 0.4); }
+.toggleCheck label { font-size:14px; }
+.toggleCheck label .toggleCheck_switch { height:36px; -webkit-box-flex:0; flex:0 0 134px; border-radius:4px; }
+.toggleCheck label .toggleCheck_switch:before { left:67px; font-size:12px; line-height:36px; width:67px; padding:0 12px; }
+.toggleCheck label .toggleCheck_switch:after { top:2px; left:2px; border-radius:2px; width:65px; line-height:32px; font-size:12px; }
+.toggleCheck label .toggleCheck_switch:hover:after { box-shadow:0 3px 3px rgba(0, 0, 0, 0.4); }
+
+
+.toggleCheck.chk3 input[type="checkbox"][disabled] ~ label { color:rgba(68, 68, 68, 0.5); }
+.toggleCheck.chk3 input[type="checkbox"]:focus ~ label .toggleCheck_switch,
+.toggleCheck.chk3 input[type="checkbox"]:hover ~ label .toggleCheck_switch { background:#444; }
+.toggleCheck.chk3 input[type="checkbox"]:focus ~ label .toggleCheck_switch:after,
+.toggleCheck.chk3 input[type="checkbox"]:hover ~ label .toggleCheck_switch:after { color:#2b2b2b; }
+.toggleCheck.chk3 input[type="checkbox"]:hover ~ label { color:#373737; }
+.toggleCheck.chk3 input[type="checkbox"]:checked ~ label:hover { color:#62b125; }
+.toggleCheck.chk3 input[type="checkbox"]:checked ~ label .toggleCheck_switch { background:#75d32d; }
+.toggleCheck.chk3 input[type="checkbox"]:checked ~ label .toggleCheck_switch:after { color:#5da924; }
+.toggleCheck.chk3 input[type="checkbox"]:checked:focus ~ label .toggleCheck_switch,
+.toggleCheck.chk3 input[type="checkbox"]:checked:hover ~ label .toggleCheck_switch { background:#69be28; }
+.toggleCheck.chk3 input[type="checkbox"]:checked:focus ~ label .toggleCheck_switch:after,
+.toggleCheck.chk3 input[type="checkbox"]:checked:hover ~ label .toggleCheck_switch:after { color:#52941f; }
+
+.toggleCheck.chk3 label .toggleCheck_switch { -webkit-transition:background 0.3s cubic-bezier(0.86, 0, 0.07, 1); transition:background0.3s cubic-bezier(0.86, 0, 0.07, 1); background:#515151; }
+.toggleCheck.chk3 label .toggleCheck_switch:before { color:rgba(255, 255, 255, 0.7); }
+.toggleCheck.chk3 label .toggleCheck_switch:after { -webkit-transition:-webkit-transform 0.3s cubic-bezier(0.86, 0, 0.07, 1); transition:-webkit-transform 0.3s cubic-bezier(0.86, 0, 0.07, 1); transition:transform 0.3s cubic-bezier(0.86, 0, 0.07, 1); transition:transform 0.3s cubic-bezier(0.86, 0, 0.07, 1), -webkit-transform 0.3s cubic-bezier(0.86, 0, 0.07, 1); color:#444; }
+.toggleCheck.chk3 input[type="checkbox"]:focus ~ label .toggleCheck_switch:after,
+.toggleCheck.chk3 input[type="checkbox"]:hover ~ label .toggleCheck_switch:after { box-shadow:0 4px 4px rgba(0, 0, 0, 0.4); }
+.toggleCheck.chk3 input[type="checkbox"]:checked ~ label .toggleCheck_switch:after { -webkit-transform:translate3d(58px, 0, 0); transform:translate3d(58px, 0, 0); }
+.toggleCheck.chk3 input[type="checkbox"]:checked:focus ~ label .toggleCheck_switch:after, .toggleCheck.chk3 input[type="checkbox"]:checked:hover ~ label .toggleCheck_switch:after { box-shadow:0 4px 4px rgba(0, 0, 0, 0.4); }
+.toggleCheck.chk3 label { font-size:13px; }
+.toggleCheck.chk3 label .toggleCheck_switch { height:40px; -webkit-box-flex:0; flex:0 0 100px; border-radius:60px; }
+.toggleCheck.chk3 label .toggleCheck_switch:before { left:45px; font-size:13px; line-height:45px; width:50px; padding:0 12px; }
+.toggleCheck.chk3 label .toggleCheck_switch:after { top:3px; left:3px; border-radius:30px; width:35px; line-height:35px; font-size:13px; }
+.toggleCheck.chk3 label .toggleCheck_switch:hover:after { box-shadow:0 4px 4px rgba(0, 0, 0, 0.4); }
