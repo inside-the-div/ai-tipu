@@ -18,9 +18,10 @@ class postsController extends Controller
     }
     public function show($id){
     	if($id){
-            $category = category::find($id);
-            if($category){
-                return view('admin.category.show',compact('category'));
+            $post = post::find($id);
+            if($post){
+                $comments = $post->comments()->paginate(10);
+                return view('admin.post.show',compact('post','comments'));
             }
         }
         return view('admin.error.error-404');
@@ -28,9 +29,9 @@ class postsController extends Controller
     }
     public function edit($id){
 	   if($id){
-            $category = category::find($id);
-            if($category){
-                return view('admin.category.edit',compact('category'));
+            $post = post::find($id);
+            if($post){
+                return view('admin.post.edit',compact('post'));
             }
         }
         return view('admin.error.error-404');
@@ -47,9 +48,9 @@ class postsController extends Controller
             $post->image = $image;
         }
     	$r->validate([
-            'title'         => 'required',
-            'writer'         => 'required',
-            'type'         => 'required',
+            'title'         => 'required|unique:posts',
+            'writer'        => 'required',
+            'type'          => 'required',
             'body'          => 'required',
             'category'      => 'required',
             'tag'           => 'required',
@@ -90,7 +91,45 @@ class postsController extends Controller
     }
 
 
-    public function update(){
-    	return "update";
+    public function update(Request $r){
+    	$post = post::find($id);
+        if ($r->hasFile('image')) {
+            $r->validate([
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $image = $r->image->store('public/images');
+            $post->image = $image;
+        }
+        $r->validate([
+            'title'         => 'required|unique:posts,title'.$r->id,
+            'writer'        => 'required',
+            'type'          => 'required',
+            'body'          => 'required',
+            'category'      => 'required',
+            'tag'           => 'required',
+            'description'   => 'required',
+            'user_id'       => 'required'
+        ]);
+
+        $slug = Str::slug($r->title, '-');
+        
+        $post->title = $r->title;
+        $post->slug = $slug;
+        $post->writer = $r->writer;
+        $post->body = $r->body;
+        $post->tag = $r->tag;
+        $post->description = $r->description;
+        $post->user_id = $r->user_id;
+        $post->type = $r->type;
+
+        if($r->video == ''){
+            $post->video = "none";
+        }else{
+            $post->video = $r->video;
+        }
+        DB::table('category_post')->where('post_id',$r->id)->delete();
+        $post->save();
+        $post->category()->sync($r->category);
+        return redirect()->route('posts')->with('success','post added success!'); 
     }
 }

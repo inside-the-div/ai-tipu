@@ -14,13 +14,26 @@ class categoriesController extends Controller
         return view('admin.category.add');
     }
     public function show($id){
-        $category = category::find($id);
-        $posts = $category->posts()->paginate(10);
-    	return view('admin.category.show',compact('category','posts'));
+
+        if($id){
+            $category = category::find($id);
+            if($category){
+                $posts = $category->posts()->paginate(10);
+                return view('admin.category.show',compact('category','posts'));
+            }
+        }
+        return view('admin.error.error-404');
     }
     public function edit($id){
-        $category = category::find($id);
-    	return view('admin.category.edit',compact('category'));
+
+        if($id){
+            $category = category::find($id);
+            if($category){
+                return view('admin.category.edit',compact('category'));
+            }
+        }
+        return view('admin.error.error-404');
+    	
     }
     public function store(Request $r){
 
