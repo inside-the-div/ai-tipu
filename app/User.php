@@ -41,4 +41,12 @@ class User extends Authenticatable
         
         return $this->hasMany('App\permission');
     }
+
+    public function posts(){
+        return $this->hasMany('App\post');
+    }
+
+    public function categories(){
+        return $this->hasMany('App\category');
+    }
 }

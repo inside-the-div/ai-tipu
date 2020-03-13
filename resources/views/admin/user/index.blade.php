@@ -87,6 +87,8 @@
                success:function(data){
                   $("#user-delete-message").html(delete_message);
                   this_tr.hide();
+
+                  // console.log(data.success);
                }
             });
         }

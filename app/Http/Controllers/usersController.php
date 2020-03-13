@@ -15,23 +15,25 @@ class usersController extends Controller
 		if(!in_array('user', $this_user_permission)){
 			return false;
 		}else{
-			return true;
+			return $this_user_permission;
 		}
 	}
-	public function index(){
 
-		if($this->permissionCheck()){
+
+	public function index(){
+		$permission_page = $this->permissionCheck();
+		if($permission_page){
 			$users = User::where('id','>',1)->get();
-			return view('admin.user.index',compact('users'));
+			return view('admin.user.index',compact('permission_page','users'));
 		}else{
 			return redirect()->route('home')->withErrors(['access' => 'access denied!']);
 		}
 	}
 	public function add(){
-
-		if($this->permissionCheck()){
+		$permission_page = $this->permissionCheck();
+		if($permission_page){
 			$permissions = permission::all();
-			return view('admin.user.add',compact('permissions'));
+			return view('admin.user.add',compact('permission_page','permissions'));
 		}else{
 			return redirect()->route('home')->withErrors(['access' => 'access denied!']);
 		}
@@ -40,20 +42,22 @@ class usersController extends Controller
 		return "this is show";
 	}
 	public function edit($id){
-		if($this->permissionCheck()){
+		$permission_page = $this->permissionCheck();
+		if($permission_page){
 			$user = User::find($id);
 			$psermission = permission::where('user_id','=',$id)->get();
 			$psermissionArray =  [];
 			foreach ($psermission as  $value) {
 			    array_push($psermissionArray,$value->page);
 			}
-			return view('admin.user.edit',compact('user','psermissionArray'));
+			return view('admin.user.edit',compact('permission_page','user','psermissionArray'));
 		}else{
 			return redirect()->route('home')->withErrors(['access' => 'access denied!']);
 		}
 	}
 	public function store(Request $r){
-		if($this->permissionCheck()){
+		$permission_page = $this->permissionCheck();
+		if($permission_page){
 			$r->validate([
 				'name' => 'required',
 				'password' => 'required|min:8',
@@ -89,7 +93,9 @@ class usersController extends Controller
 		
 	}
 	public function update(Request $r){
-		if($this->permissionCheck()){
+		$permission_page = $this->permissionCheck();
+
+		if($permission_page){
 			$r->validate([
 				'id' => 'required',
 				'permission' => 'required'
@@ -113,9 +119,21 @@ class usersController extends Controller
 		}
 	}
 	public function delete(Request $r){
-		if($this->permissionCheck()){
+		$permission_page = $this->permissionCheck();
+
+		if($permission_page){
 			$id = $r->id;
 			$user = User::find($id);
+			$this_user_posts = $user->posts;
+			foreach ($this_user_posts as  $post) {
+				$post->user_id = 1;
+				$post->save();
+			}
+			$this_user_category = $user->categories;
+			foreach ($this_user_category as  $category) {
+				$category->user_id = 1;
+				$category->save();
+			}
 			$user->permissions()->delete();
 			$user->delete();
 			return response()->json(['success'=>'user delete success']);
