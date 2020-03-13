@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 class usersController extends Controller
 {
 
-	
 	public function permissionCheck(){
 		$this_user_permission = $this->user_permission();
 		if(!in_array('user', $this_user_permission)){
@@ -19,8 +18,6 @@ class usersController extends Controller
 			return true;
 		}
 	}
-
-
 	public function index(){
 
 		if($this->permissionCheck()){
@@ -29,7 +26,6 @@ class usersController extends Controller
 		}else{
 			return redirect()->route('home')->withErrors(['access' => 'access denied!']);
 		}
-
 	}
 	public function add(){
 
@@ -39,7 +35,6 @@ class usersController extends Controller
 		}else{
 			return redirect()->route('home')->withErrors(['access' => 'access denied!']);
 		}
-		
 	}
 	public function show(){
 		return "this is show";
@@ -65,17 +60,14 @@ class usersController extends Controller
 				'c_password' => 'required:min:8',
 				'email' => 'required',
 				'permission' => 'required'
-
 			]);
 
 			if(count(User::where('email','=',$r->email)->get()) > 0){
 				return back()->withErrors(['Email' => ['User already exists']]);
 			}
-
 			if($r->password != $r->c_password){
 				return back()->withErrors(['password' => ['Please use same password']]);
 			}
-
 			$user = new User;
 			$user->name = $r->name;
 			$user->email = $r->email;
@@ -84,7 +76,6 @@ class usersController extends Controller
 			$user->save();
 
 			$user_id = $user->id;
-
 			foreach ($r->permission as $value) {
 				$p = new permission;
 				$p->user_id = $user_id;
@@ -104,7 +95,6 @@ class usersController extends Controller
 				'permission' => 'required'
 			]);
 
-
 			$id = $r->id;
 			$user = User::find($id);
 			$user->permissions()->delete();
@@ -122,7 +112,6 @@ class usersController extends Controller
 			return redirect()->route('home')->withErrors(['access' => 'access denied!']);
 		}
 	}
-
 	public function delete(Request $r){
 		if($this->permissionCheck()){
 			$id = $r->id;
