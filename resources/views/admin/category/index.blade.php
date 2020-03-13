@@ -36,7 +36,7 @@
                   <th scope="row">{{++$index}}</th>
                   <td>{{$category->name}}</td>
                   <td>{{$category->created_at->format('d/m/Y')}}</td>
-                  <td><a href="" class="text-light">{{$category->user->name}}</a></td>
+                  <td><a href="{{route('user-show',['id' => $category->user->id])}}" class="text-light">{{$category->user->name}}</a></td>
                   <td><a href="{{route('category-show',['id' => $category->id])}}" class="btn btn-success rounded-0">Details</a></td>
                   <td><a href="{{route('category-edit',['id'=>$category->id])}}" class="btn btn-info rounded-0">Edit</a></td>
                   <td><button class="btn btn-danger rounded-0 category-delete-btn" data-id="{{$category->id}}">Delete</button></td>

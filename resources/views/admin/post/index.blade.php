@@ -37,7 +37,7 @@
                   <td><a href="{{route('post-show',['id' => $post->id])}}" class="text-light">{{$post->title}}</a></td>
                   <td>{{$post->writer}}</td>
                   <td>{{$post->created_at->format('d/m/Y')}}</td>
-                  <td><a href="" class="text-light">{{$post->user->name}}</a></td>
+                  <td><a href="{{route('user-show',['id' => $post->user->id])}}" class="text-light">{{$post->user->name}}</a></td>
                   <td><a href="{{route('post-edit',['id' => $post->id])}}" class="btn btn-info rounded-0">Edit</a></td>
                   <td><button class="btn btn-danger rounded-0 post-delete-btn" data-id="{{$post->id}}">Delete</button></td>
                 </tr>

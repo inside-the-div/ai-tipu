@@ -36,9 +36,7 @@ class usersController extends Controller
 			return redirect()->route('home')->withErrors(['access' => 'access denied!']);
 		}
 	}
-	public function show(){
-		return "this is show";
-	}
+
 	public function edit($id){
 		$permission_page = $this->permissionCheck();
 		if($permission_page){
@@ -135,6 +133,22 @@ class usersController extends Controller
 			$user->permissions()->delete();
 			$user->delete();
 			return response()->json(['success'=>'user delete success']);
+		}else{
+			return redirect()->route('home')->withErrors(['access' => 'access denied!']);
+		}
+	}
+
+	public function show($id){
+		$permission_page = $this->permissionCheck();
+
+		if($permission_page){
+			$user = User::find($id);
+			$categories = $user->categories()->paginate(10);
+			$posts = $user->posts()->paginate(10);
+			$total_post = $user->posts()->count();
+			$total_categories = $user->categories()->count();
+			
+			return view('admin.user.show',compact('user','permission_page','posts','total_post','categories','total_categories'));
 		}else{
 			return redirect()->route('home')->withErrors(['access' => 'access denied!']);
 		}
