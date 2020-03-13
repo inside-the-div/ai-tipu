@@ -18,48 +18,57 @@ class settingsController extends Controller
 
 
     public function index(){
-        $permission_page = $this->permissionCheck();
-        if($permission_page){
-            $settings = settings::find(1);
-            return view('admin.setting.index',compact('settings','permission_page'))
-        }else{
-            return redirect()->route('home')->withErrors(['access' => 'access denied!']);
-        }
+      $permission_page = $this->permissionCheck();
+      if($permission_page){
+        $settings = setting::find(1);
+        return view('admin.settings.index',compact('settings','permission_page'));
+      }else{
+        return redirect()->route('home')->withErrors(['access' => 'access denied!']);
+      }
     }
     public function update(Request $r){
-         $permission_page = $this->permissionCheck();
+      $permission_page = $this->permissionCheck();
     	if($permission_page){
-            $validatedData = $r->validate([
-                   'title'          => 'required',
-                   'description'    => 'required',
-                   'tag'            => 'required',
-                   'email'          => 'required',
-                   'heading'        => 'required',
-                   'facebook'       => 'required',
-                   'linkedin'       => 'required',
-                   'github'         => 'required',
-                   'youtube'        => 'required',
-                   'codepen'        => 'required',
-                   'copyright'      => 'required',
-               ]);
+        $validatedData = $r->validate([
+           'title'          => 'required',
+           'description'    => 'required',
+           'tag'            => 'required',
+           'email'          => 'required',
+           'heading'        => 'required',
+           'facebook'       => 'required',
+           'youtube'        => 'required',
+           'copyright'      => 'required',
+        ]);
 
-            $settings = setting::find(1);
-            $settings->title = $r->title;
-            $settings->description = $r->description;
-            $settings->tag = $r->tag;
-            $settings->email = $r->email;
-            $settings->heading = $r->heading;
-            $settings->facebook = $r->facebook;
-            $settings->youtube = $r->youtube;
-            $settings->linkedin = $r->linkedin;
-            $settings->github = $r->github;
-            $settings->codepen = $r->codepen;
-            $settings->copyright = $r->copyright;
-            $settings->save();
+        $settings = setting::find(1);
 
-            return back()->with('success','Settings Update Success');
-        }else{
-            return redirect()->route('home')->with('access','you have no access');
+        if ($r->hasFile('logo')) {
+            $r->validate([
+                'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $logo = $r->logo->store('public/images');
+            $settings->logo = $logo;
         }
+        if ($r->hasFile('icon')) {
+            $r->validate([
+                'icon' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $icon = $r->logo->store('public/images');
+            $settings->icon = $icon;
+        }
+
+        $settings->title        = $r->title;
+        $settings->description  = $r->description;
+        $settings->tag          = $r->tag;
+        $settings->email        = $r->email;
+        $settings->heading      = $r->heading;
+        $settings->facebook     = $r->facebook;
+        $settings->youtube      = $r->youtube;
+        $settings->copyright    = $r->copyright;
+        $settings->save();
+        return back()->with('success','Settings Update Success');
+      }else{
+        return redirect()->route('home')->with('access','you have no access');
+      }
     }
 }

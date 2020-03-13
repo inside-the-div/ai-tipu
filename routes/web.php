@@ -66,6 +66,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/comment-delete','emailsController@delete')->name('email-delete');
         // profile routes
         Route::get('/profile','profilesController@index')->name('profile');
+        Route::get('/profile/edit','profilesController@edit')->name('profile-edit');
         Route::post('/profile-update','profilesController@update')->name('profile-update');
         Route::post('/passowrd-change','profilesController@passowrd_change')->name('passowrd-change');
         // users routes 
@@ -78,7 +79,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/user-delete','usersController@delete')->name('user-delete');
         // settings 
         Route::get('/settings','settingsController@index')->name('settings');
-        Route::post('/settings','settingsController@settings_update')->name('settings-update');
+        Route::post('/settings','settingsController@update')->name('settings-update');
         // about
         Route::get('/settings/about','aboutController@about')->name('about');
         Route::post('/settings/about','aboutController@update')->name('about-update');

@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\User;
 use App\permission;
-use Illuminate\Support\Facades\Auth;
 class usersController extends Controller
 {
 
