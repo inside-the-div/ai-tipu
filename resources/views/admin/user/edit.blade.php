@@ -15,7 +15,7 @@
 	<!-- website info area start  -->
 		<div class="row mt-20">
 			
-			<input type="hidden" value="{{$user->id}}" name="user_id">
+			<input type="hidden" value="{{$user->id}}" name="id">
 
 			<div class="col-12 col-lg-6">
 			  <div class="card p-3 rounded-0">
