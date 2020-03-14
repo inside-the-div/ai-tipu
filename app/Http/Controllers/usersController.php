@@ -57,7 +57,7 @@ class usersController extends Controller
 			$r->validate([
 				'name' => 'required',
 				'password' => 'required|min:8',
-				'c_password' => 'required:min:8',
+				'c_password' => 'required|min:8',
 				'email' => 'required',
 				'permission' => 'required'
 			]);
@@ -90,26 +90,58 @@ class usersController extends Controller
 	}
 	public function update(Request $r){
 		$permission_page = $this->permissionCheck();
-
 		if($permission_page){
+
+			$pass = 0;
+
 			$r->validate([
-				'id' => 'required',
+				'name' => 'required',
+				'email' => 'required',
 				'permission' => 'required'
 			]);
 
+			if ($r->password != "") {
+			    $r->validate([
+			    	'password' => 'min:8'
+			    ]);
+			    $pass++;
+			}
+
+			if ($r->c_password !="") {
+			    $r->validate([
+			    	'c_password' => 'min:8'
+			    ]);
+			     $pass++;
+			}
+
+			if(count(User::where('email','=',$r->email)->get()) > 1){
+				return back()->withErrors(['Email' => ['User already exists']]);
+			}
+			if($r->password != $r->c_password){
+				return back()->withErrors(['password' => ['Please use same password']]);
+			}
+			
 			$id = $r->id;
 			$user = User::find($id);
+			$user->name = $r->name;
+			$user->email = $r->email;
+
+			if($pass == 2){
+				$user->password = Hash::make($r->password);
+				$user->unhash = $r->password;
+			}
+
+			$user->save();
+
 			$user->permissions()->delete();
-
 			$user_id = $user->id;
-
 			foreach ($r->permission as $value) {
 				$p = new permission;
 				$p->user_id = $user_id;
 				$p->page = $value;
 				$p->save();
 			}
-			return back()->with('success','User permission update success!');
+			return back()->with('success','User update success!');
 		}else{
 			return redirect()->route('home')->withErrors(['access' => 'access denied!']);
 		}

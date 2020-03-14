@@ -52,6 +52,7 @@
 
 
 
+@if(in_array('post',$permission_page))
       <li class="nav-item dropdown" type="button" data-toggle="collapse" data-target="#post-dropdown" aria-expanded="false" aria-controls="post-dropdown">
         <span class="nav-link" >
           <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
@@ -70,7 +71,9 @@
           </div>
         </div>
       </li>
+@endif
 
+@if(in_array('category',$permission_page))
       <li class="nav-item dropdown" type="button" data-toggle="collapse" data-target="#category-dropdown" aria-expanded="false" aria-controls="category-dropdown">
         <span class="nav-link" >
           <i class="fa fa-edit fa-fw" aria-hidden="true"></i>
@@ -89,15 +92,17 @@
           </div>
         </div>
       </li>
-
-
+@endif
+@if(in_array('comment',$permission_page))
       <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Dashboard">
         <a class="nav-link" href="{{route('comments')}}">
           <i class="fa fa-commenting fa-fw" aria-hidden="true"></i>
           <span class="nav-link-text font-josefin">Commests</span>
         </a>
       </li>
+@endif  
 
+@if(in_array('user',$permission_page))
         <li class="nav-item dropdown" type="button" data-toggle="collapse" data-target="#user-dropdown" aria-expanded="false" aria-controls="user-dropdown">
           <a class="nav-link" href="#">
             <i class="fa fa-user-circle fa-fw" aria-hidden="true"></i>
@@ -117,7 +122,9 @@
             </div>
           </div>
         </li>
+@endif  
 
+@if(in_array('email',$permission_page))
         <li class="nav-item dropdown" type="button" data-toggle="collapse" data-target="#email-dropdown" aria-expanded="false" aria-controls="email-dropdown">
           <a class="nav-link" href="#">
             <i class="fa fa-fw fa-apple"></i>
@@ -137,6 +144,7 @@
             </div>
           </div>
         </li>
+@endif  
         <li class="nav-item dropdown" type="button" data-toggle="collapse" data-target="#profile-dropdown" aria-expanded="false" aria-controls="profile-dropdown">
           <a class="nav-link" href="#">
             <i class="fa fa-fw fa-user"></i>
@@ -149,15 +157,17 @@
                   <i class="fa fa-fw fa-info"></i>
                   <span class="nav-link-text font-josefin">Inforamtion</span>
                 </a>
-                <a class="nav-link" href="{{route('passowrd-change')}}">
-                  <i class="fa fa-fw fa-certificate" aria-hidden="true"></i>
-                  <span class="nav-link-text font-josefin">Password</span>
+                <a class="nav-link" href="{{route('profile-edit')}}">
+                  <i class="fa fa-fw fa-edit" aria-hidden="true"></i>
+                  <span class="nav-link-text font-josefin">Edit</span>
                 </a>
 
             </div>
           </div>
         </li>
+ 
 
+@if(in_array('settings',$permission_page) || in_array('about',$permission_page) || in_array('privacy',$permission_page))
         <li class="nav-item dropdown" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             <a class="nav-link" href="#">
               <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
@@ -165,26 +175,28 @@
             </a>
             <div class="collapse " id="collapseExample">
               <div class="card card-body bg-dark">
-               
+                @if(in_array('settings',$permission_page))
                   <a class="nav-link" href="{{route('settings')}}">
                     <i class="fa fa-pagelines fa-fw" aria-hidden="true"></i>
                     <span class="nav-link-text font-josefin">Website</span>
                   </a>
+                  @endif
+                  @if(in_array('about',$permission_page))
                   <a class="nav-link" href="{{route('about')}}">
                     <i class="fa fa-wpforms fa-fw" aria-hidden="true"></i>
                     <span class="nav-link-text font-josefin">About Us</span>
                   </a>
-
+                  @endif
+                  @if(in_array('privacy',$permission_page))
                   <a class="nav-link" href="{{route('privacy')}}">
                     <i class="fa fa-lock fa-fw" aria-hidden="true"></i>
                     <span class="nav-link-text font-josefin">Privacy page</span>
                   </a>
-
+                  @endif
               </div>
             </div>
           </li>
-
-		
+@endif		
 	
       </ul>
       <ul class="navbar-nav sidenav-toggler">

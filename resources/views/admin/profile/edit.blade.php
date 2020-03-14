@@ -10,9 +10,12 @@
 
 @section('content')
 
-<form action="">
-	<div class="row mt-20">
-		<div class="col-12 col-lg-8">
+
+<div class="row mt-20">
+	
+	<div class="col-12 col-lg-8">
+		<form action="{{route('profile-update')}}" method="post">
+			@csrf
 			<div class="card p-3">
 				<h1 class="font-josefin font-25 text-center">Update Information</h1>
 				<div class="row mt-3">
@@ -30,12 +33,12 @@
 				<div class="row mt-3">
 					<div class="col-12 col-lg-6">
 						<label for="address" class="font-josefin font-18"><b>Address*</b></label>
-						<textarea name="address" id="address" cols="30" rows="5" class="form-control font-josefin font-josefin rounded-0"></textarea>
+						<textarea name="address" id="address" cols="30" rows="5" class="form-control font-josefin font-josefin rounded-0">{{$my->address}}</textarea>
 						
 					</div>
 					<div class="col-12 col-lg-6">
 						<label for="about" class="font-josefin font-18"><b>About*</b></label>
-						<textarea name="about" id="about" cols="30" rows="5" class="form-control font-josefin font-josefin rounded-0"></textarea>
+						<textarea name="about" id="about" cols="30" rows="5" class="form-control font-josefin font-josefin rounded-0">{{$my->about}}</textarea>
 						
 					</div>
 				</div>
@@ -52,28 +55,31 @@
 						
 					</div>
 				</div>
-
 			</div>
-		</div>
+		</form>
+	</div>
+	
 
-		<div class="col-12 col-lg-4">
+	<div class="col-12 col-lg-4">
+		<form action="{{route('passowrd-change')}}" method="POST">
+			@csrf
 			<div class="card p-3">
 				<h1 class="font-josefin font-25 text-center">Change Password</h1>
 				<label for="password" class="font-josefin font-18 mt-3"><b>Old Password*</b></label>
 				<input type="password" name="password"  class="form-control rounded-0 font-18">
 		
-				<label for="c_password" class="font-josefin font-18 mt-3"><b>Confirm Password*</b></label>
-				<input type="password" name="c_password"  class="form-control rounded-0 font-18">
+				<label for="new_password" class="font-josefin font-18 mt-3"><b>New Password*</b></label>
+				<input type="password" name="new_password"  class="form-control rounded-0 font-18">
+
+				<label for="c_new_password" class="font-josefin font-18 mt-3"><b>Confirm New Password*</b></label>
+				<input type="password" name="c_new_password"  class="form-control rounded-0 font-18">
 				
-
-
-
 				<input type="submit" name="submit" value="Change" class="form-control rounded-0 mt-3 btn_1 font-18 font-pt">
-						
-				
 			</div>
-		</div>
+		</form>
 	</div>
-</form>
+	
+</div>
+
 
 @endsection
