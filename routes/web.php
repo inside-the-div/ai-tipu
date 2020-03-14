@@ -81,10 +81,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/settings','settingsController@index')->name('settings');
         Route::post('/settings','settingsController@update')->name('settings-update');
         // about
-        Route::get('/settings/about','aboutController@about')->name('about');
+        Route::get('/settings/about','aboutController@index')->name('about');
         Route::post('/settings/about','aboutController@update')->name('about-update');
         // privacy
-        Route::get('/settings/privacy','privacyController@privacy')->name('about');
-        Route::post('/settings/privacy','privacyController@update')->name('about-update');   
+        Route::get('/settings/privacy','privacyController@index')->name('privacy');
+        Route::post('/settings/privacy','privacyController@update')->name('privacy-update');   
     });
 });

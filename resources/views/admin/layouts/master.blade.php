@@ -170,19 +170,14 @@
                     <i class="fa fa-pagelines fa-fw" aria-hidden="true"></i>
                     <span class="nav-link-text font-josefin">Website</span>
                   </a>
-                  <a class="nav-link" href="email.php">
-                    <i class="fa fa-home fa-fw" aria-hidden="true"></i>
-                    <span class="nav-link-text font-josefin">Home Page</span>
+                  <a class="nav-link" href="{{route('about')}}">
+                    <i class="fa fa-wpforms fa-fw" aria-hidden="true"></i>
+                    <span class="nav-link-text font-josefin">About Us</span>
                   </a>
 
-                  <a class="nav-link" href="email.php">
-                    <i class="fa fa-copyright fa-fw" aria-hidden="true"></i>
-                    <span class="nav-link-text font-josefin">Footer Page</span>
-                  </a>
-
-                  <a class="nav-link" href="email.php">
-                    <i class="fa fa-search-plus fa-fw" aria-hidden="true"></i>
-                    <span class="nav-link-text font-josefin">SEO</span>
+                  <a class="nav-link" href="{{route('privacy')}}">
+                    <i class="fa fa-lock fa-fw" aria-hidden="true"></i>
+                    <span class="nav-link-text font-josefin">Privacy page</span>
                   </a>
 
               </div>
