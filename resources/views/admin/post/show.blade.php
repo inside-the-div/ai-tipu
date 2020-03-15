@@ -48,7 +48,9 @@
 					</div>
 				@endforeach
 
-
+				<div class="mt-5">
+					{{ $comments->links() }}
+				</div>
 
 			</div>
 		</div>

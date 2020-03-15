@@ -19,7 +19,7 @@ class categoriesController extends Controller
         $permission_page = $this->permissionCheck();
         if($permission_page){
             $categories = category::orderBy('created_at','desc')->get();
-        	return view('admin.category.index',compact('categories'));
+        	return view('admin.category.index',compact('categories','permission_page'));
         }else{
             return redirect()->route('home')->withErrors(['access' => 'access denied!']);
         }
@@ -27,7 +27,7 @@ class categoriesController extends Controller
     public function add(){
         $permission_page = $this->permissionCheck();
         if($permission_page){
-            return view('admin.category.add');
+            return view('admin.category.add',compact('permission_page'));
 
         }else{
             return redirect()->route('home')->withErrors(['access' => 'access denied!']);
@@ -40,7 +40,7 @@ class categoriesController extends Controller
                 $category = category::find($id);
                 if($category){
                     $posts = $category->posts()->paginate(10);
-                    return view('admin.category.show',compact('category','posts'));
+                    return view('admin.category.show',compact('category','posts','permission_page'));
                 }
             }
             return view('admin.error.error-404');
@@ -56,7 +56,7 @@ class categoriesController extends Controller
             if($id){
                 $category = category::find($id);
                 if($category){
-                    return view('admin.category.edit',compact('category'));
+                    return view('admin.category.edit',compact('category','permission_page'));
                 }
             }
             return view('admin.error.error-404');

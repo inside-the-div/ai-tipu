@@ -27,11 +27,15 @@
 					
 					<div class="col-12 mb-3">
 						<div class="card p-3">
-							<h3 class="font-20"><a href="">{{$post->title}}</a></h3>
+							<h3 class="font-20"><a href="{{route('post-show',['id' => $post->id])}}">{{$post->title}}</a></h3>
 							<span class="mt-2"><b>Date: </b>{{$post->created_at->format('d/m/Y')}}</span>
 						</div>
 					</div>
 				@endforeach
+
+				<div class="mt-5">
+					{{ $posts->links() }}
+				</div>
 
 
 

@@ -58,12 +58,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/comments','commentsController@index')->name('comments');
         Route::get('/comment/{id}','commentsController@show')->name('comment-show');
         Route::post('/comment-active','commentsController@active')->name('comment-active');
-        Route::post('/comment-not-active','commentsController@not_active')->name('comment-not-active');
+        Route::post('/comment-not-active','commentsController@notActive')->name('comment-not-active');
+        Route::post('/comment-delete','commentsController@delete')->name('comment-delete');
         // emails routes
         Route::get('/emails','emailsController@index')->name('emails');
         Route::get('/email/{id}','emailsController@show')->name('email-show');
         Route::post('/email-send','emailsController@send')->name('email-send');
-        Route::post('/comment-delete','emailsController@delete')->name('email-delete');
+        
         // profile routes
         Route::get('/profile','profilesController@index')->name('profile');
         Route::get('/profile/edit','profilesController@edit')->name('profile-edit');

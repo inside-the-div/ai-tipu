@@ -43,7 +43,7 @@ class postsController extends Controller
                 $post = post::find($id);
                 if($post){
                     $comments = $post->comments()->paginate(10);
-                    return view('admin.post.show',compact('post','comments'));
+                    return view('admin.post.show',compact('post','comments','permission_page'));
                 }
             }
             return view('admin.error.error-404');
@@ -66,7 +66,7 @@ class postsController extends Controller
 
 
                 if($post){
-                    return view('admin.post.edit',compact('post','categories','cat_array'));
+                    return view('admin.post.edit',compact('post','categories','cat_array','permission_page'));
                 }
             }
             return view('admin.error.error-404');
