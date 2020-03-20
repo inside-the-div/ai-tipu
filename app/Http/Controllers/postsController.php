@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\post;
 use App\category;
+use Auth;
 class postsController extends Controller
 {
 
@@ -21,7 +22,8 @@ class postsController extends Controller
     public function index(){
         $permission_page = $this->permissionCheck();
         if($permission_page){
-            $posts = post::orderBy('created_at','desc')->get();
+            $user_id = auth()->user()->id;
+            $posts = post::where('user_id','=',$user_id)->orderBy('created_at','desc')->get();
             return view('admin.post.index',compact('posts','permission_page'));
         }else{
             return redirect()->route('home')->withErrors(['access' => 'access denied!']);
@@ -38,38 +40,39 @@ class postsController extends Controller
     }
     public function show($id){
         $permission_page = $this->permissionCheck();
+        $user_id = auth()->user()->id;
         if($permission_page){
             if($id){
                 $post = post::find($id);
-                if($post){
+                if($post->user_id == $user_id && $post){
                     $comments = $post->comments()->paginate(10);
                     return view('admin.post.show',compact('post','comments','permission_page'));
+                }else{
+                    return redirect()->route('home')->withErrors(['access' => 'access denied!']);
                 }
             }
-            return view('admin.error.error-404');
         }else{
             return redirect()->route('home')->withErrors(['access' => 'access denied!']);
         }
     }
     public function edit($id){
         $permission_page = $this->permissionCheck();
+        $user_id = auth()->user()->id;
         if($permission_page){
            if($id){
                 $post = post::find($id);
-                $categories = category::all();
-                $this_category = $post->category;
-                $cat_array =  [];
-                foreach ($this_category as  $c) {
-                    array_push($cat_array, $c->name);
-                }
-                
-
-
-                if($post){
+                if($post->user_id == $user_id && $post){
+                    $categories = category::all();
+                    $this_category = $post->category;
+                    $cat_array =  [];
+                    foreach ($this_category as  $c) {
+                        array_push($cat_array, $c->name);
+                    }
                     return view('admin.post.edit',compact('post','categories','cat_array','permission_page'));
+                }else{
+                    return redirect()->route('home')->withErrors(['access' => 'access denied!']);
                 }
             }
-            return view('admin.error.error-404');
         }else{
             return redirect()->route('home')->withErrors(['access' => 'access denied!']);
         }
@@ -128,10 +131,16 @@ class postsController extends Controller
     public function delete(Request $r){
 
         $permission_page = $this->permissionCheck();
+        $user_id = auth()->user()->id;
+        $post = post::find($r->id)
         if($permission_page){
-            post::find($r->id)->delete();
-            DB::table('category_post')->where('post_id',$r->id)->delete();
-            return response()->json(['success'=>'post delete success']);
+            if($post->user_id == $user_id && $post){
+                $post->delete();
+                DB::table('category_post')->where('post_id',$r->id)->delete();
+                return response()->json(['success'=>'post delete success']);
+            }else{
+                return redirect()->route('home')->withErrors(['access' => 'access denied!']);
+            }
         }else{
             return redirect()->route('home')->withErrors(['access' => 'access denied!']);
         }
