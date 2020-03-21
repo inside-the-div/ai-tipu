@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-      return view('welcome');
-});
-Route::get('/poems', 'publicController@allPoems')->name('web-poems');
-Route::get('/upponas', 'publicController@allUpponas')->name('web-upponas');
+
+Route::get('/', 'publicController@home')->name('web-home');
+Route::get('/posts', 'publicController@post')->name('web-posts');
+Route::get('/novels', 'publicController@novel')->name('web-novel');
+Route::get('/storys', 'publicController@story')->name('web-story');
 Route::get('/category/{slug}', 'publicController@categoryPost')->name('web-category');
 Route::get('/about', 'publicController@about')->name('web-about');
 Route::get('/privacy', 'publicController@privacy')->name('web-privacy');

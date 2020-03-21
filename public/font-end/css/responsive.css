@@ -1,0 +1,98 @@
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  
+  //CSS
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  //CSS
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  //CSS
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+  //CSS
+  
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+  //CSS
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  .logo{
+    margin-top: 0px;
+  }
+  .responsive-nav{
+    position: relative;
+  }
+  .main-menu{
+    background: #d2d0d0;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    /*height: 400px;*/
+    display: none;
+
+  }
+  #nav-toggle-icon{
+    display: block;
+    position: absolute;
+    top:5px;
+    right: 5px;
+    display: block;
+    padding: 10px 20px;
+    background: #d2d0d0;
+    z-index: 100;
+  }
+
+  .main-menu ul li{
+    display: block;
+  }
+  .main-menu .dropdown .dropdown-menu{
+    display: none;
+  } 
+
+}

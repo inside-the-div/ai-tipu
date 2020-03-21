@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Free Web tutorials">
+	<meta name="keywords" content="HTML,CSS,XML,JavaScript">
+	<meta name="author" content="John Doe">
+	<meta name="developer" content="http://nasirkhan.me">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- fev-icon -->
+	<link rel="shortcut icon" href="" />
+
+	<!-- =================css file start=================== -->
+	<!-- font awesome -->
+	<link rel="stylesheet" href="{{URL::asset('font-end/css/all.css')}}">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="{{URL::asset('font-end/css/bootstrap.min.css')}}">
+	<!-- owl carasel slider css -->
+	<link rel="stylesheet" href="{{URL::asset('font-end/css/owl.carousel.min.css')}}">
+	<link rel="stylesheet" href="{{URL::asset('font-end/css/owl.theme.default.min.css')}}">
+
+	<!-- animate css -->
+    <link rel="stylesheet" href="{{URL::asset('font-end/css/animate.min.css')}}">
+
+    <!-- main css -->
+    <link rel="stylesheet" href="{{URL::asset('font-end/css/default.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('font-end/css/style.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('font-end/css/responsive.css')}}">
+	<!-- =================css file end=================== -->
+
+	<!-- =================css file cdn start=================== -->
+
+	<!-- font awesome cdn -->
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<!-- Bootstrap CSS -->
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+
+	<!-- =================css file cdn end=================== -->
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+	<!-- ========================website title =======================-->
+	@yield('title')
+</head>
+<body>
+	
+
+
+
+	   <header>
+	<!-- log and nav area -->
+	    <div id="logo-and-nav" class="main-menu-logo bg-none">
+	        <nav class="navbar navbar-expand-lg navbar-light">
+	            <div class="container">
+	              <a class="navbar-brand" href="index.html">কবিতা</a>
+	              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	                <span class="navbar-toggler-icon"></span>
+	              </button>
+
+	              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	                <ul class="navbar-nav ml-auto">
+
+	                  <li class="nav-item active">
+	                    <a class="nav-link" href="index.html">প্রথম পাতা</span></a>
+	                  </li>
+	                  <li class="nav-item ">
+	                    <a class="nav-link" href="">কবিতা</span></a>
+	                  </li>
+
+	                  <li class="nav-item ">
+	                    <a class="nav-link" href="">গল্প</span></a>
+	                  </li>             
+
+	                  <li class="nav-item ">
+	                    <a class="nav-link" href="">গান</span></a>
+	                  </li>
+
+	                  <li class="nav-item ">
+	                    <a class="nav-link" href="">আমার সম্পর্কে</span></a>
+	                  </li>
+	                  <li class="nav-item ">
+	                    <a class="nav-link" href="">যোগাযোগ</span></a>
+	                  </li>
+
+	                </ul>
+	              </div>
+	          </nav>
+	      </div>
+	    
+	   </header>
+
+
+
+
+	<section id="hero">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="banner" style="background: url('assets/img/banner.jpg')">
+						<div class="banner-text text-center">
+							<h1 class="font-33">ক্ষুদ্র করো না হে প্রভু আমার 
+							হৃদয়ের পরিসর, <br>
+							যেন সম ঠাঁই পায় 
+							শত্রু-মিত্র-পর। </h1>
+							<h2 class="font-26 mt-3">কাজী নজরুল ইসলাম</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section id="content" class="section-margin-y-30">
+		<div class="container">
+			@yield('content')
+		</div>
+	</section>
+
+
+
+	<footer class="py-3 bg-1st">
+		<div class="container">
+			<div class="text-center">
+				<p class="text-white font-16">CopyRight &copy; Nasir Khan || 2019</p>
+			</div>
+		</div>
+	</footer>
+
+
+	<!--  jQuery js  -->
+	 <script src="{{URL::asset('font-end/javascript/jquery.js')}}"></script>
+	 <!-- Popper Js  -->
+	 <script src="{{URL::asset('font-end/javascript/pooper.js')}}"></script>
+	 <!-- Bootstrap 4 Js  -->
+	 <script src="{{URL::asset('font-end/javascript/bootstrap.min.js')}}"></script>
+	 <!-- particles 4 Js  -->
+	 <!-- <script src="assets/js/particles.min.js"></script> -->
+	 <!-- Tyoed 4 Js  -->
+	 <!-- <script src="assets/js/typed.js"></script> -->
+	 <!-- OWL Carousel JS  -->
+	 <!-- <script src="assets/js/owl.carousel.min.js"></script> -->
+
+	 <script src="{{URL::asset('font-end/javascript/custom.js')}}"></script>
+
+	 @yield('custom-js')
+</body>
+</html>
