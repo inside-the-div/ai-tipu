@@ -23,7 +23,12 @@ class postsController extends Controller
         $permission_page = $this->permissionCheck();
         if($permission_page){
             $user_id = auth()->user()->id;
-            $posts = post::where('user_id','=',$user_id)->orderBy('created_at','desc')->get();
+            if($user_id == 1){
+                 $posts = post::orderBy('created_at','desc')->get();
+            }else{
+                 $posts = post::where('user_id','=',$user_id)->orderBy('created_at','desc')->get();
+            }
+           
             return view('admin.post.index',compact('posts','permission_page'));
         }else{
             return redirect()->route('home')->withErrors(['access' => 'access denied!']);
@@ -44,7 +49,7 @@ class postsController extends Controller
         if($permission_page){
             if($id){
                 $post = post::find($id);
-                if($post->user_id == $user_id && $post){
+                if(($post->user_id == $user_id || $user_id == 1) && $post){
                     $comments = $post->comments()->paginate(10);
                     return view('admin.post.show',compact('post','comments','permission_page'));
                 }else{
@@ -61,7 +66,7 @@ class postsController extends Controller
         if($permission_page){
            if($id){
                 $post = post::find($id);
-                if($post->user_id == $user_id && $post){
+                if(($post->user_id == $user_id || $user_id == 1) && $post){
                     $categories = category::all();
                     $this_category = $post->category;
                     $cat_array =  [];
@@ -132,9 +137,9 @@ class postsController extends Controller
 
         $permission_page = $this->permissionCheck();
         $user_id = auth()->user()->id;
-        $post = post::find($r->id)
+        $post = post::find($r->id);
         if($permission_page){
-            if($post->user_id == $user_id && $post){
+            if(($post->user_id == $user_id || $user_id == 1) && $post){
                 $post->delete();
                 DB::table('category_post')->where('post_id',$r->id)->delete();
                 return response()->json(['success'=>'post delete success']);

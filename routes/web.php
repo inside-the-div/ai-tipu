@@ -64,6 +64,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/emails','emailsController@index')->name('emails');
         Route::get('/email/{id}','emailsController@show')->name('email-show');
         Route::post('/email-send','emailsController@send')->name('email-send');
+        Route::post('/email-admin-send','emailsController@sendFormAdmin')->name('send-custom-email');
+        Route::get('/email/custom/send','emailsController@emailSendPage')->name('email-send-page');
         
         // profile routes
         Route::get('/profile','profilesController@index')->name('profile');

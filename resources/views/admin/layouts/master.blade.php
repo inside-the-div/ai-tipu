@@ -104,10 +104,10 @@
 
 @if(in_array('user',$permission_page))
         <li class="nav-item dropdown" type="button" data-toggle="collapse" data-target="#user-dropdown" aria-expanded="false" aria-controls="user-dropdown">
-          <a class="nav-link" href="#">
+          <span class="nav-link">
             <i class="fa fa-user-circle fa-fw" aria-hidden="true"></i>
             <span class="nav-link-text font-josefin">Users</span>
-          </a>
+          </span>
           <div class="collapse " id="user-dropdown">
             <div class="card card-body bg-dark">
              
@@ -126,10 +126,10 @@
 
 @if(in_array('email',$permission_page))
         <li class="nav-item dropdown" type="button" data-toggle="collapse" data-target="#email-dropdown" aria-expanded="false" aria-controls="email-dropdown">
-          <a class="nav-link" href="#">
+          <span class="nav-link">
             <i class="fa fa-fw fa-apple"></i>
             <span class="nav-link-text font-josefin">Emails</span>
-          </a>
+          </span>
           <div class="collapse " id="email-dropdown">
             <div class="card card-body bg-dark">
              
@@ -137,7 +137,7 @@
                   <i class="fa fa-list-ul fa-fw" aria-hidden="true"></i>
                   <span class="nav-link-text font-josefin">All Email</span>
                 </a>
-                <a class="nav-link" href="{{route('email-send')}}">
+                <a class="nav-link" href="{{route('email-send-page')}}">
                   <i class="fa fa-paper-plane fa-fw" aria-hidden="true"></i>
                   <span class="nav-link-text font-josefin">Send Email</span>
                 </a>
@@ -285,7 +285,7 @@
               @endforeach
                 
             @endif
-
+            <div id="success-message">
             @if(session()->has('success'))
                 <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
                   {{ session()->get('success') }}
@@ -295,6 +295,7 @@
                 </div>
             @endif
 
+            </div>
            
 
           </div>

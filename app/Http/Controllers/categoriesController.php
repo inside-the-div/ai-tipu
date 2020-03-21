@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\category;
+use Auth;
 class categoriesController extends Controller
 {
+   
 
     public function permissionCheck(){
         $this_user_permission = $this->user_permission();
@@ -17,8 +19,14 @@ class categoriesController extends Controller
     }  
     public function index(){
         $permission_page = $this->permissionCheck();
+        $user_id = auth()->user()->id;
         if($permission_page){
-            $categories = category::orderBy('created_at','desc')->get();
+            if($user_id == 1){
+                $categories = category::orderBy('created_at','desc')->get();
+            }else{
+                $categories = category::where('user_id','=',$user_id)->orderBy('created_at','desc')->get();
+            }
+            
         	return view('admin.category.index',compact('categories','permission_page'));
         }else{
             return redirect()->route('home')->withErrors(['access' => 'access denied!']);
@@ -35,32 +43,34 @@ class categoriesController extends Controller
     }
     public function show($id){
         $permission_page = $this->permissionCheck();
+        $user_id = auth()->user()->id;
         if($permission_page){
             if($id){
                 $category = category::find($id);
-                if($category){
+                if($category && ($category->user_id == $user_id || $user_id == 1)){
                     $posts = $category->posts()->paginate(10);
                     return view('admin.category.show',compact('category','posts','permission_page'));
+                }else{
+                    return redirect()->route('home')->withErrors(['access' => 'access denied!']);
                 }
             }
-            return view('admin.error.error-404');
         }else{
             return redirect()->route('home')->withErrors(['access' => 'access denied!']);
         }
 
     }
     public function edit($id){
-
         $permission_page = $this->permissionCheck();
+        $user_id = auth()->user()->id;
         if($permission_page){
             if($id){
                 $category = category::find($id);
-                if($category){
+                if($category && ($category->user_id == $user_id || $user_id == 1)){
                     return view('admin.category.edit',compact('category','permission_page'));
+                }else{
+                    return redirect()->route('home')->withErrors(['access' => 'access denied!']);
                 }
             }
-            return view('admin.error.error-404');
-
         }else{
             return redirect()->route('home')->withErrors(['access' => 'access denied!']);
         }
