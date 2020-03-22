@@ -17,7 +17,7 @@
 				</div>
 			</div>
 			<div class="poem-info">
-				<p class="d-block font-16 poem-date mb-3"><span>Date: {{$post->created_at}}</span><span class="d-inline-block ml-3 ">Total Comment: {{count($comments)}}</span></p>
+				<p class="d-block font-16 poem-date mb-3"><span>Date: {{$post->created_at->format('d/m/Y')}}</span><span class="d-inline-block ml-3 font-pt">Total Comment: {{count($comments)}}</span></p>
 				<div class="tag-list">
 
 					@foreach($post->category as $category)
@@ -50,7 +50,7 @@
 
 
 			<div class="comment mt-5">
-				<h3 class="font-20 pb-2">Put a comment</h3>
+				<h3 class="font-20 pb-2 font-pt">Put a comment</h3>
 				<span class="font-18  mb-2 d-block" id="comment-message"></span>
 				<div class="row">
 					<input type="hidden" id="comment-post_id" value="{{$post->id}}">
@@ -64,7 +64,7 @@
 				<textarea name="" id="comment-text" cols="30" rows="5" class="form-control rounded-0 mt-2" placeholder="comment"></textarea>
 				
 				<button class="px-4 pb-1 font-19 bg-1st border-0 mt-2 text-white" id="comment-btn">Submit</button>
-				<span><b>Note: </b>Comment will show after admin approval</span>
+				<span class="font-josefin"><b>Note: </b>Comment will show after admin approval</span>
 				
 			</div>
 

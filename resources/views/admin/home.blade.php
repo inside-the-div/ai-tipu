@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-<title>Dash board</title>
+<title>Dashboard</title>
 @endsection
 @section('page-top')
 <a href="{{route('home')}}" class="font-josefin">Home</a>
@@ -32,7 +32,7 @@
 	<div class="col-3">
 		<div class="card p-3 bg-primary ">
 			<h3 class="text-center font-25 text-light font-pt">Total Emails</h3>
-			<h3 class="text-center  display-3 text-light font-josefin">3454</h3>
+			<h3 class="text-center  display-3 text-light font-josefin">{{count($emails)}}</h3>
 		</div>
 	</div>
 </div>

@@ -41,6 +41,9 @@ developer url: http://nasirkhan.me
 .nav-item a:hover{
 	color: rgb(235, 77, 75) !important;
 }
+.nav-item .active{
+	color:  rgb(235, 77, 75) !important;
+}
 
 
 .position-top{
@@ -188,4 +191,43 @@ developer url: http://nasirkhan.me
 }
 #comment-btn{
 	cursor: pointer;
+}
+
+footer{
+	background: #2a2938;
+	padding-top: 70px;
+	padding-bottom: 20px;
+	color: #fff;
+}
+
+footer .social-link li{
+	display: inline-block;
+}
+footer .social-link li a{
+	display: block;
+	background: #000000;
+	font-size: 30px;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	color: #fff;
+}
+footer .social-link li a:hover{
+	background: rgb(235, 77, 75,1);
+}
+footer .quick-links li{
+	display: inline-block;
+}
+footer .quick-links li a{
+	display: block;
+	padding: 3px 20px;
+	background: #000000;
+	font-size: 18px;
+	color: #fff;
+	margin-bottom: 5px;
+	transition: 0.4s;
+}
+footer .quick-links li a:hover{
+	background: rgb(235, 77, 75,1);
 }

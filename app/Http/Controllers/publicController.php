@@ -10,6 +10,7 @@ use App\setting;
 use App\about;
 use App\category;
 use App\privacy;
+use App\email;
 
 class publicController extends Controller
 {
@@ -85,8 +86,13 @@ class publicController extends Controller
             'email' => $r->email,
             'message' => $r->message, 
         );
-
-        //Mail::to('m.n.u.yea.hia.khan@gmail.com')->send(new userMail($data));
+        $e = new email;
+        $e->name = $r->name;
+        $e->email = $r->email; 
+        $e->subject = $r->subject; 
+        $e->message = $r->message;
+        $e->save();
+        Mail::to('m.n.u.yea.hia.khan@gmail.com')->send(new userMail($data));
         return back()->with('success','Email send success !');
     }
 

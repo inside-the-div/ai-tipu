@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|PT+Sans&display=swap');
+/*
+font-family: 'PT Sans', sans-serif;
+font-family: 'Josefin Sans', sans-serif;
+*/
+.font-pt{
+	font-family: 'PT Sans', sans-serif;	
+}
+.font-josefin{
+	font-family: 'Josefin Sans', sans-serif;
+}
+
 /*================default class=====================*/
 /*tag*/
 *{

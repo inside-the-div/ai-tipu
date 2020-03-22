@@ -52,9 +52,6 @@
 </head>
 <body>
 	
-
-
-
 	   <header>
 	<!-- log and nav area -->
 	    <div id="logo-and-nav" class="main-menu-logo bg-none">
@@ -64,38 +61,31 @@
 	              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	                <span class="navbar-toggler-icon"></span>
 	              </button>
-
 	              <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	                <ul class="navbar-nav ml-auto">
-
-
 	                  <li class="nav-item ">
-	                    <a class="nav-link" href="{{route('web-poem')}}">কবিতা</span></a>
+	                    <a class="nav-link @if(Request::is('poems')) active @endif" href="{{route('web-poem')}}">কবিতা</span></a>
 	                  </li>
 
 	                  <li class="nav-item ">
-	                    <a class="nav-link" href="{{route('web-story')}}">গল্প</span></a>
+	                    <a class="nav-link @if(Request::is('storys')) active @endif" href="{{route('web-story')}}">গল্প</span></a>
 	                  </li>             
 
 	                  <li class="nav-item ">
-	                    <a class="nav-link" href="{{route('web-novel')}}">উপন্যাস</span></a>
+	                    <a class="nav-link @if(Request::is('novels')) active @endif" href="{{route('web-novel')}}">উপন্যাস</span></a>
 	                  </li>
 
 	                  <li class="nav-item ">
-	                    <a class="nav-link" href="{{route('web-about')}}">আমার সম্পর্কে</span></a>
+	                    <a class="nav-link @if(Request::is('about')) active @endif" href="{{route('web-about')}}">আমার সম্পর্কে</span></a>
 	                  </li>
 	                  <li class="nav-item ">
-	                    <a class="nav-link" href="{{route('web-contact')}}">যোগাযোগ</span></a>
+	                    <a class="nav-link @if(Request::is('contact')) active @endif" href="{{route('web-contact')}}">যোগাযোগ</span></a>
 	                  </li>
-
 	                </ul>
 	              </div>
 	          </nav>
 	      </div>
-	    
 	   </header>
-
-
 
 @if(Request::is('/'))
 	<section id="hero">
@@ -125,10 +115,45 @@
 
 
 
-	<footer class="py-3 bg-1st">
+	<footer>
 		<div class="container">
+
+			<div class="row">
+				<div class="col-12 col-lg-4">
+					<h3 class="font-23  py-2 mb-2 font-josefin">LOGO</h3>
+					<ul>
+						<li class="font-18 font-pt">Phone: +8801637017926</li>
+						<li class="font-18 font-pt">Email: +8801637017926</li>
+						<li class="font-18 font-pt">Address: +8801637017926</li>
+					</ul>
+				</div>
+
+				<div class="col-12 col-lg-4 quick-links">
+					<h3 class="font-23  py-2 mb-2 font-josefin">Quick Links</h3>
+					<ul>
+						<li><a class="font-pt" href="{{route('web-home')}}">Home</a></li>
+						<li><a class="font-pt" href="{{route('web-about')}}">About</a></li>
+						<li><a class="font-pt" href="{{route('web-contact')}}">Contact</a></li>
+						<li><a class="font-pt" href="">Privacy</a></li>
+					</ul>
+				</div>
+
+
+				<div class="col-12 col-lg-4 social-link">
+					<h3 class="font-23  py-2 mb-2 font-josefin">Follow me</h3>
+					<ul>
+						<li><a class="font-16 transition-4" href="poem.html"><i class="fa fa-facebook"></i></a></li>
+						<li><a class="font-16 transition-4" href="poem.html"><i class="fa fa-instagram"></i></a></li>
+						<li><a class="font-16 transition-4" href="poem.html"><i class="fa fa-youtube"></i></a></li>
+					</ul>
+				</div>
+
+			</div>
+
+
+
 			<div class="text-center">
-				<p class="text-white font-16">CopyRight &copy; Nasir Khan || 2019</p>
+				<p class="text-white font-16 py-3 mt-5 font-josefin">CopyRight &copy; Nasir Khan || 2019</p>
 			</div>
 		</div>
 	</footer>

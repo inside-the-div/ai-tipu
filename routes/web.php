@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'publicController@home')->name('web-home');
-Route::get('/posts', 'publicController@poem')->name('web-poem');
+Route::get('/poems', 'publicController@poem')->name('web-poem');
 Route::get('/novels', 'publicController@novel')->name('web-novel');
 Route::get('/storys', 'publicController@story')->name('web-story');
 Route::get('/category/{slug}', 'publicController@categoryPost')->name('web-category');
@@ -69,6 +69,11 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/email-send','emailsController@send')->name('email-send');
         Route::post('/email-admin-send','emailsController@sendFormAdmin')->name('send-custom-email');
         Route::get('/email/custom/send','emailsController@emailSendPage')->name('email-send-page');
+        Route::post('/email-delete','emailsController@delete')->name('email-delete');
+        Route::post('/email-seen','emailsController@emailSeen')->name('email-seen');
+        Route::post('/email-not-seen','emailsController@emailNotSeen')->name('email-not-seen');
+        Route::post('/emailAutoSeen','emailsController@autoSeen')->name('email-auto-seen');
+
         
         // profile routes
         Route::get('/profile','profilesController@index')->name('profile');

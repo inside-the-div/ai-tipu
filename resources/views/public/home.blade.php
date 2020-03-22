@@ -12,7 +12,7 @@
 					<div class="single-poem py-3 border-bottom">
 						<h2 class="font-23 poem-title"><a class="transition-4" href="{{route('web-single-post',['slug' => $post->slug])}}">{{$post->title}}</a></h2>
 						<p class="font-14 py-2 poem-short-summery">{{$post->description}}</p>
-						<p class="d-block font-16 poem-date">{{$post->created_at}}</p>
+						<p class="d-block font-16 poem-date font-pt">Date: {{$post->created_at->format('d/m/Y')}}</p>
 						<div class="tag-list">
 							@foreach($post->category as $category)
 								<a class="bg-1st font-14 transition-4" href="{{route('web-category',['slug' => $category->slug])}}">{{$category->name}}</a>

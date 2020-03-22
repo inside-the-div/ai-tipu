@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-lg-8 col-md-7 col-12">
 			<div class="card p-3">
-				<h1 class="font-23 text-center mb-5">Contact We Me</h1>
+				<h1 class="font-23 text-center mb-5 font-josefin">Contact We Me</h1>
 				<div id="success-message">
 					@if ($errors->any())
 					  @foreach ($errors->all() as $error)
@@ -33,19 +33,19 @@
 					@csrf
 					<div class="row">
 						<div class="col-lg-6 col-12">
-							<label for="" class="font-16"><b>Name*</b></label>
+							<label for="" class="font-16 font-josefin"><b>Name*</b></label>
 							<input type="text" class="form-control rounded-0" name="name">
 						</div>
 						<div class="col-lg-6 col-12">
-							<label for="" class="font-16"><b>Subject*</b></label>
+							<label for="" class="font-16 font-josefin"><b>Subject*</b></label>
 							<input type="text" class="form-control rounded-0" name="subject">
 						</div>
 
 					</div>
-					<label for="" class="font-16 mt-3"><b>Email*</b></label>
+					<label for="" class="font-16 mt-3 font-josefin"><b>Email*</b></label>
 					<input type="text" class="form-control rounded-0" name="email">
 
-					<label for="" class="font-16 mt-3"><b>Message*</b></label>
+					<label for="" class="font-16 mt-3 font-josefin"><b>Message*</b></label>
 					<textarea name="message" cols="30" rows="5" class="form-control rounded-0"></textarea>
 
 					<input type="submit" name="submit" class="form-control bg-1st mt-2 rounded-0 bg-1 text-light border-0" style="background: #eb4d4b" id="send-btn">
@@ -74,7 +74,7 @@
 				</div>
 			</div>
 			<div class="related-poem card p-2 rounded-0 mt-3">
-				<h3 class="font-20 pb-3 text-center">Related Posts</h3>
+				<h3 class="font-20 pb-3 text-center font-josefin">Related Posts</h3>
 				@foreach($related_posts as $post)
 				<div class="single-related-poem border-top py-2">
 					<h4 class="font-17 mb-1"><a class="color-1st" href="{{route('web-single-post',['slug' => $post->slug])}}">{{$post->title}}</a></h4>
