@@ -96,6 +96,7 @@
                url:'/admin/comment-delete',
                data:{id:id},
                success:function(data){
+                  // console.log(data.success);
                   $("#comment-delete-message").html(delete_message);
                   this_tr.hide();
                }

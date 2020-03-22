@@ -1,15 +1,16 @@
 @extends('public.layouts.master')
 
 @section('title')
-<title>ai-tipu | home</title>
+<title>গল্প</title>
 @endsection
 
 @section('content')
 	<div class="row">
 		<div class="col-lg-8 col-md-7 col-12">
+			<h1 class="font-23 text-center mb-3">গল্প</h1>
 			<div class="all-post">
-				@foreach($posts as $post)
-					<div class="single-poem py-3 border-bottom">
+				@foreach($storys as $post)
+					<div class="single-poem pb-4">
 						<h2 class="font-23 poem-title"><a class="transition-4" href="{{route('web-single-post',['slug' => $post->slug])}}">{{$post->title}}</a></h2>
 						<p class="font-14 py-2 poem-short-summery">{{$post->description}}</p>
 						<p class="d-block font-16 poem-date">{{$post->created_at}}</p>
@@ -20,7 +21,14 @@
 						</div>
 					</div>
 				@endforeach
-			
+
+				@if(count($storys) <= 0)
+					<div class="alert alert-danger rounded-0">
+						<h2 class="font-25">No post found!!</h2>
+					</div>
+				@endif
+
+				{{ $storys->links() }}
 			</div>
 		</div>
 
@@ -28,9 +36,8 @@
 		<div class="col-lg-4 col-md-5 col-12">
 			<div class="search-form card p-2 rounded-0">
 				<p class="font-16 pb-2 ">Search Poem</p>
-				<form action="{{route('web-search')}}" method="post">
-					@csrf
-					<input type="text" class="form-control rounded-0" placeholder="Type Poem Name" name="keyword">
+				<form action="">
+					<input type="text" class="form-control rounded-0" placeholder="Type Poem Name">
 					<input id="search-btn" type="submit" class="transition-4 form-control rounded-0 bg-1st border-0 my-2  font-16 " value="Search">
 				</form>
 			</div>
@@ -61,7 +68,7 @@
 						<span><i class="fa fa-arrow-right"></i></span>
 					</div>
 					<div class="col-11">
-						<a class=" transition-4" href="{{route('web-category',['slug' => $c->slug])}}">{{$c->name}} ({{count($c->posts)}})</a>
+						<a class=" transition-4" href="poem.html">{{$c->name}} ({{count($c->posts)}})</a>
 					</div>
 					@endforeach
 				</div>

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'publicController@home')->name('web-home');
-Route::get('/posts', 'publicController@post')->name('web-posts');
+Route::get('/posts', 'publicController@poem')->name('web-poem');
 Route::get('/novels', 'publicController@novel')->name('web-novel');
 Route::get('/storys', 'publicController@story')->name('web-story');
 Route::get('/category/{slug}', 'publicController@categoryPost')->name('web-category');
@@ -25,6 +25,9 @@ Route::get('/privacy', 'publicController@privacy')->name('web-privacy');
 Route::get('/contact', 'publicController@contact')->name('web-contact');
 Route::post('/contact', 'publicController@sendEmail')->name('web-send-email');
 Route::post('/comment', 'publicController@putComment')->name('web-put-comment');
+Route::post('/search', 'publicController@search')->name('web-search');
+
+
 
 
 
@@ -91,3 +94,4 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/settings/privacy','privacyController@update')->name('privacy-update');   
     });
 });
+Route::get('/{slug}', 'publicController@singlePost')->name('web-single-post');

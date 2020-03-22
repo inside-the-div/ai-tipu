@@ -45,12 +45,12 @@ class commentsController extends Controller
             $r->validate([
                 'id' => 'required'
             ]);
-            if($id){
-                $delete = comment::find($r->id)->dalete();
-                if($delete){
-                    return response()->json(['success'=>'comment delete success']);
-                }
-            }
+            
+            $delete = comment::find($r->id)->delete();
+            
+            return response()->json(['success'=>'delete success']);
+            
+            
         }else{
             return redirect()->route('home')->withErrors(['access' => 'access denied!']);
         }

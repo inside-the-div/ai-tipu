@@ -7,9 +7,10 @@
 @section('content')
 	<div class="row">
 		<div class="col-lg-8 col-md-7 col-12">
+			<h1 class="font-23 text-center mb-5 card p-3">Your searching keyword is: {{$keyword}}</h1>
 			<div class="all-post">
 				@foreach($posts as $post)
-					<div class="single-poem py-3 border-bottom">
+					<div class="single-poem py-4">
 						<h2 class="font-23 poem-title"><a class="transition-4" href="{{route('web-single-post',['slug' => $post->slug])}}">{{$post->title}}</a></h2>
 						<p class="font-14 py-2 poem-short-summery">{{$post->description}}</p>
 						<p class="d-block font-16 poem-date">{{$post->created_at}}</p>
@@ -20,7 +21,14 @@
 						</div>
 					</div>
 				@endforeach
-			
+
+				@if(count($posts) <= 0)
+					<div class="alert alert-danger rounded-0">
+						<h2 class="font-25">No post found!!</h2>
+					</div>
+				@endif
+
+				
 			</div>
 		</div>
 
@@ -53,21 +61,16 @@
 				</div>
 			</div>
 
-			<div class="category card p-2 rounded-0">
-				<h4 class="category">Category</h4>
-				<div class="row">
-					@foreach($categorys as $c)
-					<div class="col-1">
-						<span><i class="fa fa-arrow-right"></i></span>
-					</div>
-					<div class="col-11">
-						<a class=" transition-4" href="{{route('web-category',['slug' => $c->slug])}}">{{$c->name}} ({{count($c->posts)}})</a>
-					</div>
-					@endforeach
+			<div class="related-poem card p-2 rounded-0 mt-3">
+				<h3 class="font-20 pb-3 text-center">Related Posts</h3>
+				@foreach($related_posts as $post)
+				<div class="single-related-poem border-top py-2">
+					<h4 class="font-17 mb-1"><a class="color-1st" href="{{route('web-single-post',['slug' => $post->slug])}}">{{$post->title}}</a></h4>
+					<h5 class="font-14">{{$post->writer}}</h5>
 				</div>
+				@endforeach
 			</div>
-
-			<!-- end category -->
+			
 		</div>
 	</div>
 @endsection

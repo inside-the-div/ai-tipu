@@ -105,7 +105,7 @@ class postsController extends Controller
                 'user_id'       => 'required'
             ]);
 
-            $slug = Str::slug($r->title, '-');
+            $slug = str_replace(" ","-",$r->title);
             
             $post->title = $r->title;
             $post->slug = $slug;
@@ -140,6 +140,7 @@ class postsController extends Controller
         $post = post::find($r->id);
         if($permission_page){
             if(($post->user_id == $user_id || $user_id == 1) && $post){
+                $post->comments()->delete();
                 $post->delete();
                 DB::table('category_post')->where('post_id',$r->id)->delete();
                 return response()->json(['success'=>'post delete success']);
@@ -174,7 +175,8 @@ class postsController extends Controller
                 'user_id'       => 'required'
             ]);
 
-            $slug = Str::slug($r->title, '-');
+            
+            $slug = str_replace(" ","-",$r->title);
             
             $post->title = $r->title;
             $post->slug = $slug;

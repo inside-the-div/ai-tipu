@@ -48,6 +48,7 @@
 
 	<!-- ========================website title =======================-->
 	@yield('title')
+	<meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 <body>
 	
@@ -59,7 +60,7 @@
 	    <div id="logo-and-nav" class="main-menu-logo bg-none">
 	        <nav class="navbar navbar-expand-lg navbar-light">
 	            <div class="container">
-	              <a class="navbar-brand" href="index.html">কবিতা</a>
+	              <a class="navbar-brand" href="/">কবিতা</a>
 	              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	                <span class="navbar-toggler-icon"></span>
 	              </button>
@@ -67,26 +68,24 @@
 	              <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	                <ul class="navbar-nav ml-auto">
 
-	                  <li class="nav-item active">
-	                    <a class="nav-link" href="index.html">প্রথম পাতা</span></a>
-	                  </li>
+
 	                  <li class="nav-item ">
-	                    <a class="nav-link" href="">কবিতা</span></a>
+	                    <a class="nav-link" href="{{route('web-poem')}}">কবিতা</span></a>
 	                  </li>
 
 	                  <li class="nav-item ">
-	                    <a class="nav-link" href="">গল্প</span></a>
+	                    <a class="nav-link" href="{{route('web-story')}}">গল্প</span></a>
 	                  </li>             
 
 	                  <li class="nav-item ">
-	                    <a class="nav-link" href="">গান</span></a>
+	                    <a class="nav-link" href="{{route('web-novel')}}">উপন্যাস</span></a>
 	                  </li>
 
 	                  <li class="nav-item ">
-	                    <a class="nav-link" href="">আমার সম্পর্কে</span></a>
+	                    <a class="nav-link" href="{{route('web-about')}}">আমার সম্পর্কে</span></a>
 	                  </li>
 	                  <li class="nav-item ">
-	                    <a class="nav-link" href="">যোগাযোগ</span></a>
+	                    <a class="nav-link" href="{{route('web-contact')}}">যোগাযোগ</span></a>
 	                  </li>
 
 	                </ul>
@@ -98,7 +97,7 @@
 
 
 
-
+@if(Request::is('/'))
 	<section id="hero">
 		<div class="container">
 			<div class="row">
@@ -116,7 +115,7 @@
 			</div>
 		</div>
 	</section>
-
+@endif
 
 	<section id="content" class="section-margin-y-30">
 		<div class="container">

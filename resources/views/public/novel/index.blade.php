@@ -7,9 +7,10 @@
 @section('content')
 	<div class="row">
 		<div class="col-lg-8 col-md-7 col-12">
+			<h1 class="font-23 text-center mb-3">কবিতা</h1>
 			<div class="all-post">
-				@foreach($posts as $post)
-					<div class="single-poem py-3 border-bottom">
+				@foreach($novels as $post)
+					<div class="single-poem pb-4">
 						<h2 class="font-23 poem-title"><a class="transition-4" href="{{route('web-single-post',['slug' => $post->slug])}}">{{$post->title}}</a></h2>
 						<p class="font-14 py-2 poem-short-summery">{{$post->description}}</p>
 						<p class="d-block font-16 poem-date">{{$post->created_at}}</p>
@@ -20,7 +21,13 @@
 						</div>
 					</div>
 				@endforeach
-			
+
+				@if(count($novels) <= 0)
+					<div class="alert alert-danger rounded-0">
+						<h2 class="font-25">No post found!!</h2>
+					</div>
+				@endif
+				{{ $novels->links() }}
 			</div>
 		</div>
 
@@ -61,7 +68,7 @@
 						<span><i class="fa fa-arrow-right"></i></span>
 					</div>
 					<div class="col-11">
-						<a class=" transition-4" href="{{route('web-category',['slug' => $c->slug])}}">{{$c->name}} ({{count($c->posts)}})</a>
+						<a class=" transition-4" href="poem.html">{{$c->name}} ({{count($c->posts)}})</a>
 					</div>
 					@endforeach
 				</div>

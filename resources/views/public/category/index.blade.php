@@ -1,15 +1,16 @@
 @extends('public.layouts.master')
 
 @section('title')
-<title>ai-tipu | home</title>
+<title>{{$category->name}}</title>
 @endsection
 
 @section('content')
 	<div class="row">
 		<div class="col-lg-8 col-md-7 col-12">
+			<h1 class="font-23 text-center mb-5">{{$category->name}}</h1>
 			<div class="all-post">
 				@foreach($posts as $post)
-					<div class="single-poem py-3 border-bottom">
+					<div class="single-poem py-3 ">
 						<h2 class="font-23 poem-title"><a class="transition-4" href="{{route('web-single-post',['slug' => $post->slug])}}">{{$post->title}}</a></h2>
 						<p class="font-14 py-2 poem-short-summery">{{$post->description}}</p>
 						<p class="d-block font-16 poem-date">{{$post->created_at}}</p>
