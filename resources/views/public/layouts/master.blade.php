@@ -152,12 +152,12 @@
 
 
 
-			<div class="text-center">
-				<p class="text-white font-16 py-3 mt-5 font-josefin">CopyRight &copy; Nasir Khan || 2019</p>
-			</div>
+
 		</div>
 	</footer>
-
+	<div class="text-center copy-right">
+		<p class="text-white font-16 font-josefin">CopyRight &copy; Nasir Khan || 2019</p>
+	</div>
 
 	<!--  jQuery js  -->
 	 <script src="{{URL::asset('font-end/javascript/jquery.js')}}"></script>

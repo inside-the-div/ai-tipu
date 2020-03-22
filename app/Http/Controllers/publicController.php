@@ -17,22 +17,26 @@ class publicController extends Controller
     public function home(){
     	$posts = post::orderBy('created_at','desc')->paginate(10);
     	$categorys = category::all();
-    	return view('public.home',compact('posts','categorys'));
+        $setting = setting::find(1);
+    	return view('public.home',compact('setting','posts','categorys'));
     }
     public function poem(){
         $poems = post::where('type','=','kobita')->paginate(10);
         $categorys = category::all();
-    	return view('public.poem.index',compact('poems','categorys'));
+        $setting = setting::find(1);
+    	return view('public.poem.index',compact('setting','poems','categorys'));
     }
     public function story(){
         $storys = post::where('type','=','golpo')->paginate(10);
         $categorys = category::all();
-        return view('public.story.index',compact('storys','categorys'));
+        $setting = setting::find(1);
+        return view('public.story.index',compact('setting','storys','categorys'));
     }
     public function novel(){
         $novels = post::where('type','=','upponas')->paginate(10);
         $categorys = category::all();
-        return view('public.novel.index',compact('novels','categorys'));
+        $setting = setting::find(1);
+        return view('public.novel.index',compact('setting','novels','categorys'));
     }
  
     public function categoryPost($c){
@@ -40,7 +44,8 @@ class publicController extends Controller
         $category = category::where('slug','=',$c)->first();
         $posts = $category->posts()->paginate(10);
         // dd($posts);
-    	return view('public.category.index',compact('category','categorys','posts'));
+        $setting = setting::find(1);
+    	return view('public.category.index',compact('setting','category','categorys','posts'));
     }
 
     public function singlePost($slug){
@@ -48,7 +53,8 @@ class publicController extends Controller
         $related_posts = post::orderBy('created_at','desc')->limit(10)->get();
          // dd($related_posts);
         $comments = $post->comments()->where('active','=',1)->orderBy('created_at','desc')->limit(10)->get();
-    	return view('public.single',compact('post','comments','related_posts'));
+        $setting = setting::find(1);
+    	return view('public.single',compact('setting','post','comments','related_posts'));
     }
 
     public function putComment(Request $r){
@@ -65,11 +71,13 @@ class publicController extends Controller
     public function about(){
         $about = about::find(1);
         $related_posts = post::orderBy('created_at','desc')->limit(10)->get();
-        return view('public.about.index',compact('related_posts','about'));
+        $setting = setting::find(1);
+        return view('public.about.index',compact('setting','related_posts','about'));
     }
     public function contact(){
        $related_posts = post::orderBy('created_at','desc')->limit(10)->get();
-       return view('public.contact.index',compact('related_posts'));
+       $setting = setting::find(1);
+       return view('public.contact.index',compact('setting','related_posts'));
     }
 
     public function sendEmail(Request $r){
@@ -103,7 +111,8 @@ class publicController extends Controller
         $keyword = $r->keyword;
         $related_posts = post::orderBy('created_at','desc')->limit(10)->get();
         $posts = post::where('title','like',"%{$r->keyword}%")->orWhere('body','like',"%{$r->keyword}%")->limit(10)->get();
-        return view('public.search.index',compact('posts','related_posts','keyword'));
+        $setting = setting::find(1);
+        return view('public.search.index',compact('setting','posts','related_posts','keyword'));
     }
 }
 

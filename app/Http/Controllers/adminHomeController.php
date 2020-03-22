@@ -10,17 +10,9 @@ use App\email;
 class adminHomeController extends Controller
 {
 
-	public function permissionCheck(){
-	    $this_user_permission = $this->user_permission();
-	    if(!in_array('category', $this_user_permission)){
-	        return false;
-	    }else{
-	        return $this_user_permission;
-	    }
-	} 
 
     public function index(){
-    	$permission_page = $this->permissionCheck();
+    	$permission_page = $this->user_permission();
 
     	$posts = post::orderBy('created_at','desc')->get(); 
     	$comments = comment::orderBy('created_at','desc')->get(); 
@@ -28,7 +20,6 @@ class adminHomeController extends Controller
     	$emails = email::all();
 
     	$notSeenEmails = email::where('active','=',0)->get();
-
 
     	return view('admin.home',compact('permission_page','comments','posts','categorys','emails','notSeenEmails'));
     }

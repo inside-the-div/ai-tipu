@@ -15,21 +15,22 @@
 		<div class="card p-3">
 			<div class="row">
 				<div class="col-lg-4 col-12">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci qui itaque temporibus. Iure labore esse officiis reprehenderit voluptas minus expedita, numquam sint exercitationem nam, inventore repellendus, error saepe nulla aspernatur. Saepe eos neque temporibus placeat rerum dignissimos, maxime nesciunt pariatur repudiandae amet sed aliquam ut, delectus sequi nisi cumque consequatur praesentium rem harum. Unde inventore ad nobis, eius quam rem voluptatibus? Perspiciatis doloremque officiis obcaecati voluptatem dolore laudantium quo modi sequi error, cupiditate, alias, eum consequuntur dicta! Veritatis officiis accusantium eius, laudantium provident exercitationem. Cum tempora veniam maxime, atque saepe quas vel id, consequuntur eum neque dolorum odio, unde quos!</p>
+					<h3 class="font-josefin font-20 mb-2">Image.............</h3>
+					<h3 class="font-josefin font-20 mb-2">About</h3>
+					<p>{{$my->about}}</p>
 				</div>
 				<div class="col-12 col-lg-8">
 					<h1 class="font-josefin font-25"><b>Name:</b> {{$my->name}}</h1>
 					<p class="font-josefin font-20 mt-2"><b>Email:</b> {{$my->email}}</p>
 					<p class="font-josefin font-20 mt-2"><b>Phone:</b> {{$my->phone}}</p>
 					<p class="font-josefin font-20 mt-2"><b>Address:</b> {{$my->address}}</p>
-					<p class="font-josefin font-18 mt-2"><b>About:</b> {{$my->about}}</p>
-					<p class="font-josefin font-18 mt-2"><b>Permission: </b></p>
-					<ul  class="ml-20">
-						@foreach($my->permissions as $p)
-						<li class="font-josefin font-20">{{$p->page}}</li>
+					<p class="font-josefin font-18 mt-2 d-inline"><b>Permissions: </b></p>
+					<ul  class=" m-0 d-inline">
+						@foreach($my->permissions as  $p)
+						<li class="font-josefin font-20 d-inline">{{$p->page}}, </li>
 						@endforeach
 						@if($my->id == 1)
-						<li class="font-josefin font-20">user</li>
+						<li class="font-josefin font-20 d-inline">user</li>
 						@endif
 					</ul>
 				</div>
