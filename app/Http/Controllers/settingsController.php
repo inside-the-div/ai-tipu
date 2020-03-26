@@ -53,8 +53,15 @@ class settingsController extends Controller
             $r->validate([
                 'icon' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
-            $icon = $r->logo->store('public/images');
+            $icon = $r->icon->store('public/images');
             $settings->icon = $icon;
+        }
+        if ($r->hasFile('hero_image')) {
+            $r->validate([
+                'hero_image' => 'image|mimes:jpg,jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $hero_image = $r->hero_image->store('public/images');
+            $settings->hero_image = $hero_image;
         }
 
         $settings->title        = $r->title;

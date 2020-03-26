@@ -92,13 +92,15 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<div class="banner" style="background: url('assets/img/banner.jpg')">
+					<div class="banner" style="background: url('{{Storage::url($setting->hero_image)}}');background-size: cover;" >
 						<div class="banner-text text-center">
-							<h1 class="font-33">ক্ষুদ্র করো না হে প্রভু আমার 
+							<!-- <h1 class="font-33">ক্ষুদ্র করো না হে প্রভু আমার 
 							হৃদয়ের পরিসর, <br>
 							যেন সম ঠাঁই পায় 
 							শত্রু-মিত্র-পর। </h1>
-							<h2 class="font-26 mt-3">কাজী নজরুল ইসলাম</h2>
+							<h2 class="font-26 mt-3">কাজী নজরুল ইসলাম</h2> -->
+
+							{!!$setting->heading!!}
 						</div>
 					</div>
 				</div>

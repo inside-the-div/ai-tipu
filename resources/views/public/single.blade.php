@@ -31,6 +31,27 @@
 			</div>
 
 
+			
+			@if($post->image != '')
+			<div class="image">
+				<div class="p-3">
+					<!-- <img src="" alt="{{$post->title}}">	 -->
+					<img src="{{Storage::url($post->image)}}" alt="">	
+				</div>
+			</div>
+			@endif
+
+			@if($post->video != 'none')
+			<div class="video">
+				<div class="card p-3">
+					<iframe  height="315"
+					src="https://www.youtube.com/embed/tgbNymZ7vqY">
+					</iframe>	
+				</div>
+			</div>
+			@endif
+
+
 			<div class="all-comments mt-5">
 				@if(count($comments) > 0)
 				<h3 class="font-20 pb-3  mb-2">All Comments ({{count($comments)}})</h3>
@@ -43,8 +64,6 @@
 						<p class="text-justify font-16 mt-2">{{$comment->text}}</p>
 					</div>
 				@endforeach
-				
-
 			</div>
 
 
@@ -65,10 +84,7 @@
 				
 				<button class="px-4 pb-1 font-19 bg-1st border-0 mt-2 text-white" id="comment-btn">Submit</button>
 				<span class="font-josefin"><b>Note: </b>Comment will show after admin approval</span>
-				
 			</div>
-
-
 		</div>
 		</div>
 

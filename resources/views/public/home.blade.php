@@ -46,9 +46,9 @@
 
 				<div class="social-link">
 					<ul>
-						<li><a class="font-16 transition-4" href="poem.html"><i class="fa fa-facebook"></i></a></li>
-						<li><a class="font-16 transition-4" href="poem.html"><i class="fa fa-instagram"></i></a></li>
-						<li><a class="font-16 transition-4" href="poem.html"><i class="fa fa-twitter"></i></a></li>
+						<li><a class="font-16 transition-4" href="{{$setting->youtube}}"><i class="fa fa-facebook"></i></a></li>
+						
+						<li><a class="font-16 transition-4" href="{{$setting->facebook}}"><i class="fa fa-youtube"></i></a></li>
 					</ul>
 				</div>
 			</div>

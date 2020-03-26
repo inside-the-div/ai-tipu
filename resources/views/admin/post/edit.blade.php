@@ -88,7 +88,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <img src="" alt="">
+        <img src="{{Storage::url($post->image)}}" alt="" class="img-fluid"> 
       </div>
 
     </div>
