@@ -20,6 +20,10 @@
 						</div>
 					</div>
 				@endforeach
+
+				<div class="text-left mt-3">
+					{{$posts->links()}}
+				</div>
 			
 			</div>
 		</div>

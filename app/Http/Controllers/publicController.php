@@ -15,7 +15,7 @@ use App\email;
 class publicController extends Controller
 {
     public function home(){
-    	$posts = post::orderBy('created_at','desc')->paginate(10);
+    	$posts = post::orderBy('created_at','desc')->paginate(7);
     	$categorys = category::all();
         $setting = setting::find(1);
     	return view('public.home',compact('setting','posts','categorys'));
